@@ -1,29 +1,29 @@
-# 1.- Como creamos una lista vacía?
-list_empty = [];
+#paso 1: Crea una lista vacía llamada beatles
+beatles = []
 
-# 2.- Como agregamos elementos a una lista?
-newNumber = int(input("Enter a number: "))
-list_empty.append(newNumber);
-print("Get list: ", list_empty)
+#paso 2: Utiliza el método append() para agregar los siguientes miembros de la banda a la lista: John Lennon, Paul McCartney y George Harrison;
+for i in ["John Lennon", "Paul McCartney", "George Harrison"]:
+    beatles.append(i);
 
-# 3.- Como podemos utilizar el bucle for para agregar más elementos?
-for i in range(3):
-    newNumber = int(input("Enter a number: "))
-    list_empty.append(newNumber)
-    i+=1
-print("Get list: ", list_empty)
+#paso 3: Utiliza el bucle for y el append() para pedirle al usuario que agregue los siguientes miembros de la banda a la lista: Stu Sutcliffe, y Pete Best;
+artistas=["Stu Sutcliffe","Pete Best"]
+for i in artistas:
+    permiso = input("Quiere ingresar mas artistas (S/N): ")
+    while permiso.lower() != "s":#se ejecuta el while cuando se cumple la condicion osea es TRUE
+        permiso = input("ingresar mas artistas (S/N): ")
+    beatles.append(i)
 
-# 4.- Como podemos eliminar un elemento de la lista
-lenList = (len(list_empty) - 1)
-print("Elimina un elemento del arrray del (0 -", lenList," )")
-newNumber = int(input("Enter a number: "))
-del list_empty[newNumber]
-print("Get list: ", list_empty)
+#paso 4: Utiliza la instrucción del para eliminars a Stu Sutcliffe y Pete Best de la lista;
+def deleteMember(pos):
+    del beatles[-1]
+deleteMember(-1)
+deleteMember(-1)
+print(beatles)
 
-# 5.- Como podemos agregar un elemento al principio de la lista?
-newNumber = int(input("Enter a number: "))
-list_empty.insert(0,newNumber)
-print("Get list: ", list_empty)
+#paso 5: Utiliza el método insert() para agregar a Ringo Starr al principio de la lista.
+def addMember (pos,name):
+    beatles.insert(pos,name);
 
-# 6.- Ahora imprimí por consola la longitud de la lista.
-print("La longitud de la lista es ",len(list_empty));
+addMember(0,"Ringo Star");
+addMember(-1,"Profesor");
+print(beatles);
