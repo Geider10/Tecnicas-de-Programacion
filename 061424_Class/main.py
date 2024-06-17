@@ -1,9 +1,10 @@
 #1
-# Agregar nuevos productos al inventario.✅
+# Agregar nuevos productos al inventario. ✅
 # Listar todos los productos en el inventario. ✅
-# Buscar un producto por su nombre.
-# Actualizar la cantidad de un producto en el inventario.
+# Buscar un producto por su nombre. ✅
+# Actualizar la cantidad de un producto en el inventario. ✅
 # Guardar el inventario en un archivo de texto al finalizar.
+# Extra: elminar producto por su key
 
 #2 
 # funciones que realicen cada una de las tareas
@@ -33,12 +34,35 @@ def getProducts():
         print(cont, key, value, "\n")
         cont = cont + 1
 
-def searchProduct():
+def searchKeyProduct():
     product = input("Ingresa el nombre: ")
-    for product in listProduct:
-        print(product)
+    for key in listProduct.keys():
+        if key == product:
+            return product
+        
+    print("No se encontro dicho producto")
 
-    # print("No existe dicho producto")
+def searchValuesProduct(name):
+    return getProducts.get(name)
+
+def patchProduct():
+    product = searchKeyProduct()
+    print(type(product))
+    if(product != None):
+        # postProduct(), este puede crear un producto o editar sus valores
+        #pero esto solo edita sus valores
+        precioProduct = inputInt("Ingresa el precio: ")
+        cantidadProduct = inputInt("Ingresa la cantidad: ")
+        listProduct[product] = {"precio" : precioProduct, "cantidad": cantidadProduct}
+        print(listProduct)
+
+def deleteProduct():
+    product = searchKeyProduct()
+    del listProduct[product]
+    print(listProduct)
+ 
+deleteProduct()
+
 def controllUser(option):
     if(option == 1):
         print("--- Agrega un nuevo producto ---")
@@ -48,9 +72,14 @@ def controllUser(option):
         getProducts()
     elif(option == 3):
         print("--- Buscar producto ---")
-        searchProduct()
+        product = searchKeyProduct()
+        values = searchValuesProduct(product)
+        print(product, "--->", values)
     elif(option == 4):
-        print("4) Actualizar la cantidad de productos")
+        print("--- Actualizar producto ---")
+        patchProduct()
+
+
 
 def menu():
     print("Bienvenido a OfiNet, tu tienda de computación.")
@@ -63,9 +92,8 @@ def menu():
     option = inputInt("Elegí una opción: ")
     controllUser(option)
 
-def _main():#punto de inicio de la app
+#punto de inicio de la app
+def _main():
     menu()
-_main()
+# _main()
 
-# for key,value in listProduct.items():
-#     print("key: ", key, " value: ", value)
