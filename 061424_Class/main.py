@@ -1,29 +1,37 @@
-#1
 # Agregar nuevos productos al inventario. ✅
 # Listar todos los productos en el inventario. ✅
 # Buscar un producto por su nombre. ✅
 # Actualizar la cantidad de un producto en el inventario. ✅
-# Guardar el inventario en un archivo de texto al finalizar.
-# Extra: elminar producto por su key
+# Guardar el inventario en un archivo de texto al finalizar. ❌
 
-#2 
-# funciones que realicen cada una de las tareas
-# una funcion que llame las funciones segun la eleccion del usuario
+# funciones que realicen cada una de las tareas ✅
+# una funcion que llame las funciones segun la eleccion del usuario ✅
+# cargar el inventario en un archivo al iniciar ❌
+
+# EXTRAS:
+# eliminar producto por su key ✅
+# usar modulos para importar o exportar archivos❌
+# organizar las funciones en carpetas❌
+
 listProduct = {
     "microfono" : { "precio" : 40000, "cantidad" : 4},
     "mouse" : { "precio" : 10000, "cantidad" : 10},
     "camara" : { "precio" : 80000, "cantidad" : 6}
 }
-def inputInt(mensaje):
+def inputString(mensaje = "Ingresa: "):
+    data = input(mensaje).lower()
+    return data
+
+def inputInt(mensaje = "Ingresa: "):
     while (True):
         try:
-            value = int(input(mensaje))
-            return value
+            data = int(input(mensaje))
+            return data
         except ValueError:
             print("Error, se espera un entero.")
         
 def postProduct():
-    keyProduct = input("Ingresa el nombre: ")
+    keyProduct = inputString("Ingresa el nombre: ")
     precioProduct = inputInt("Ingresa el precio: ")
     cantidadProduct = inputInt("Ingresa la cantidad: ")
     listProduct[keyProduct] = {"precio" : precioProduct, "cantidad" : cantidadProduct}
@@ -35,7 +43,7 @@ def getProducts():
         cont = cont + 1
 
 def searchKeyProduct():
-    product = input("Ingresa el nombre: ")
+    product = inputString("Ingresa el nombre: ")
     for key in listProduct.keys():
         if key == product:
             return product
@@ -43,51 +51,53 @@ def searchKeyProduct():
     print("No se encontro dicho producto")
 
 def searchValuesProduct(name):
-    return getProducts.get(name)
+    return listProduct.get(name)
 
 def patchProduct():
     product = searchKeyProduct()
-    print(type(product))
     if(product != None):
         # postProduct(), este puede crear un producto o editar sus valores
         #pero esto solo edita sus valores
         precioProduct = inputInt("Ingresa el precio: ")
         cantidadProduct = inputInt("Ingresa la cantidad: ")
         listProduct[product] = {"precio" : precioProduct, "cantidad": cantidadProduct}
-        print(listProduct)
+
+def loadProducts():
+    print("hola")
+def saveProducts():
+    print("hola")
 
 def deleteProduct():
     product = searchKeyProduct()
     del listProduct[product]
     print(listProduct)
  
-deleteProduct()
-
 def controllUser(option):
     if(option == 1):
-        print("--- Agrega un nuevo producto ---")
         postProduct()
     elif(option == 2):
-        print("--- Los productos ---")
         getProducts()
     elif(option == 3):
-        print("--- Buscar producto ---")
         product = searchKeyProduct()
         values = searchValuesProduct(product)
         print(product, "--->", values)
     elif(option == 4):
-        print("--- Actualizar producto ---")
         patchProduct()
+    elif(option == 5):
+        deleteProduct()
+    elif(option == 6):
+        print("aguante boca")
 
 
 
 def menu():
     print("Bienvenido a OfiNet, tu tienda de computación.")
-    print("1) Agregar un producto: ")
-    print("2) Listar todos los productos: ")
-    print("3) Buscar un producto por su nombre: ")
-    print("4) Actualizar la cantidad de productos: ")
-    print("5) Guardar el inventario en un archivo .txt: ")
+    print("1) --- Agregar un producto --- ")
+    print("2) --- Listar todos los productos --- ")
+    print("3) --- Buscar un producto por su nombre --- ")
+    print("4) --- Actualizar los datos de un producto --- ")
+    print("5) --- Eliminar un producto --- ")
+    print("6) --- Guardar el inventario en un archivo --- ")
 
     option = inputInt("Elegí una opción: ")
     controllUser(option)
@@ -95,5 +105,5 @@ def menu():
 #punto de inicio de la app
 def _main():
     menu()
-# _main()
+_main()
 
