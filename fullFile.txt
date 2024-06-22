@@ -1,0 +1,1 @@
+{"teclado": {"precio": 2000, "cantidad": 5}, "mouse": {"precio": 15000, "cantidad": 35}, "camara": {"precio": 100000, "cantidad": 5}, "audiculares": {"precio": 60000, "cantidad": 15}, "microfono": {"precio": 40000, "cantidad": 30}}
